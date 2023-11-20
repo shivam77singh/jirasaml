@@ -84,6 +84,12 @@
 			<groupId>org.opensaml</groupId>
 			<artifactId>xmltooling</artifactId>
 			<version>1.4.4</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.bouncycastle</groupId>
+					<artifactId>bcprov-jdk15on</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
