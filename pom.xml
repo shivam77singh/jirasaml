@@ -43,10 +43,10 @@
 					<groupId>org.apache.velocity</groupId>
 					<artifactId>velocity</artifactId>
 				</exclusion>
-				<exclusion>
-					<groupId>org.owasp.esapi</groupId>
-					<artifactId>esapi</artifactId>
-				</exclusion>
+<!--				<exclusion>-->
+<!--					<groupId>org.owasp.esapi</groupId>-->
+<!--					<artifactId>esapi</artifactId>-->
+<!--				</exclusion>-->
 				<exclusion>
 					<groupId>org.apache.santuario</groupId>
 					<artifactId>xmlsec</artifactId>
@@ -101,10 +101,10 @@
 					<groupId>org.bouncycastle</groupId>
 					<artifactId>bcprov-jdk15on</artifactId>
 				</exclusion>
-				<exclusion>
-					<groupId>ca.juliusdavies</groupId>
-					<artifactId>not-yet-commons-ssl</artifactId>
-				</exclusion>
+<!--				<exclusion>-->
+<!--					<groupId>ca.juliusdavies</groupId>-->
+<!--					<artifactId>not-yet-commons-ssl</artifactId>-->
+<!--				</exclusion>-->
 				<exclusion>
 					<groupId>org.apache.santuario</groupId>
 					<artifactId>xmlsec</artifactId>
