@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.miniorange.sso.saml</groupId>
 	<artifactId>jira-sso</artifactId>
-	<version>2.1.0</version>
+	<version>2.1.1</version>
 	<organization>
 		<name>miniOrange</name>
 		<url>http://miniorange.com/</url>
