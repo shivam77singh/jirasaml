@@ -1,402 +1,242 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.miniorange.sso.saml</groupId>
-	<artifactId>jira-sso</artifactId>
-	<version>2.1.1</version>
-	<organization>
-		<name>miniOrange</name>
-		<url>http://miniorange.com/</url>
-	</organization>
-	<packaging>atlassian-plugin</packaging>
-	<dependencies>
-		<!-- <dependency> <groupId>org.apache.wss4j</groupId> <artifactId>wss4j-ws-security-common</artifactId> 
-			<version>2.1.5</version> <exclusions> <exclusion> <groupId>org.slf4j</groupId> 
-			<artifactId>slf4j-api</artifactId> </exclusion> <exclusion> <groupId>org.bouncycastle</groupId> 
-			<artifactId>bcpkix-jdk15on</artifactId> </exclusion> <exclusion> <groupId>org.bouncycastle</groupId> 
-			<artifactId>bcprov-jdk15on</artifactId> </exclusion> </exclusions> </dependency> -->
-		<!--<dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-api</artifactId> 
-			<version>1.7.14</version> <scope>provided</scope> </dependency> -->
-		<dependency>
-			<groupId>org.opensaml</groupId>
-			<artifactId>opensaml</artifactId>
-			<version>2.6.5</version>
-			<exclusions>
-				<exclusion>
-					<groupId>xalan</groupId>
-					<artifactId>xalan</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>xerces</groupId>
-					<artifactId>xercesImpl</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>xalan</groupId>
-					<artifactId>serializer</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>xml-resolver</groupId>
-					<artifactId>xml-resolver</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.apache.velocity</groupId>
-					<artifactId>velocity</artifactId>
-				</exclusion>
-<!--				<exclusion>-->
-<!--					<groupId>org.owasp.esapi</groupId>-->
-<!--					<artifactId>esapi</artifactId>-->
-<!--				</exclusion>-->
-				<exclusion>
-					<groupId>org.apache.santuario</groupId>
-					<artifactId>xmlsec</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>commons-httpclient</groupId>
-					<artifactId>commons-httpclient</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>xerces</groupId>
-			<artifactId>xercesImpl</artifactId>
-			<version>2.12.2</version>
-			<scope>provided</scope>
-		</dependency>
 
-		<dependency>
-			<groupId>com.atlassian.templaterenderer</groupId>
-			<artifactId>atlassian-template-renderer-velocity16-plugin</artifactId>
-			<version>2.0.0</version>
-			<scope>provided</scope>
-		</dependency>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-		<dependency>
-			<groupId>com.atlassian.templaterenderer</groupId>
-			<artifactId>atlassian-template-renderer-api</artifactId>
-			<version>3.0.0</version>
-			<scope>provided</scope>
-		</dependency>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.miniorange.sso.saml</groupId>
+    <artifactId>jira-sso</artifactId>
+    <version>3.0.0</version>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.velocity/velocity -->
-<!--		<dependency>-->
-<!--			<groupId>org.apache.velocity</groupId>-->
-<!--			<artifactId>velocity</artifactId>-->
-<!--			<version>1.7</version>-->
-<!--			<scope>provided</scope>-->
-<!--		</dependency>-->
+    <organization>
+        <name>miniOrange</name>
+        <url>https://www.miniorange.com/</url>
+    </organization>
 
-		<dependency>
-			<groupId>org.jsoup</groupId>
-			<artifactId>jsoup</artifactId>
-			<version>1.15.3</version>
-		</dependency>
+    <name>Jira SSO / Single Sign On, Jira SAML SSO</name>
+    <description>Single Sign On (SSO) into Jira using any SAML compliant applications like ADFS, Azure AD, Okta, OneLogin, G Suite / Google Apps, Keycloak, Ping Federate, Oracle, AuthAnvil, Salesforce, Auth0, Shibboleth, Centrify, OpenAM, Bitium, RSA and many more. Jira SAML SSO app is easy to use and setup. Don't have an IDP? You can use miniOrange Identity Provider for SAML Single Sign On (SSO) to login into Jira.</description>
+    <packaging>atlassian-plugin</packaging>
 
-<!--		<dependency>-->
-<!--			<groupId>org.opensaml</groupId>-->
-<!--			<artifactId>xmltooling</artifactId>-->
-<!--			<version>1.4.4</version>-->
-<!--			<exclusions>-->
-<!--				<exclusion>-->
-<!--					<groupId>org.bouncycastle</groupId>-->
-<!--					<artifactId>bcprov-jdk15on</artifactId>-->
-<!--				</exclusion>-->
-<!--				<exclusion>-->
-<!--					<groupId>ca.juliusdavies</groupId>-->
-<!--					<artifactId>not-yet-commons-ssl</artifactId>-->
-<!--				</exclusion>-->
-<!--				<exclusion>-->
-<!--					<groupId>org.apache.santuario</groupId>-->
-<!--					<artifactId>xmlsec</artifactId>-->
-<!--				</exclusion>-->
-<!--			</exclusions>-->
-<!--		</dependency>-->
-
-		<dependency>
-			<groupId>xml-resolver</groupId>
-			<artifactId>xml-resolver</artifactId>
-			<version>1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.santuario</groupId>
-			<artifactId>xmlsec</artifactId>
-			<version>2.2.6</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-collections</groupId>
-			<artifactId>commons-collections</artifactId>
-			<version>3.2.2</version>
-		</dependency>
-
-
-		<!-- <dependency> <groupId>org.apache.cxf</groupId> <artifactId>cxf-common-utilities</artifactId> 
-			<version>2.5.11</version> </dependency> <dependency> <groupId>org.apache.cxf</groupId> 
-			<artifactId>cxf-rt-rs-security-sso-saml</artifactId> <version>3.1.6</version> 
-			<exclusions> <exclusion> <groupId>org.apache.geronimo.specs</groupId> <artifactId>geronimo-servlet_3.0_spec</artifactId> 
-			</exclusion> </exclusions> </dependency> -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.atlassian.seraph</groupId>
-			<artifactId>atlassian-seraph</artifactId>
-			<version>2.6.3</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.3.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>4.5.13</version>
-		</dependency>
-		<!--<dependency> <groupId>com.fasterxml.jackson.core</groupId> <artifactId>jackson-core</artifactId> 
-			<version>2.7.4</version> </dependency> <dependency> <groupId>com.fasterxml.jackson.core</groupId> 
-			<artifactId>jackson-annotations</artifactId> <version>2.7.4</version> </dependency> 
-			<dependency> <groupId>com.fasterxml.jackson.core</groupId> <artifactId>jackson-databind</artifactId> 
-			<version>2.7.4</version> </dependency> -->
-		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
-			<version>1.13</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.7</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>opensymphony</groupId>
-			<artifactId>webwork</artifactId>
-			<version>1.4-atlassian-30</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.atlassian.jira</groupId>
-			<artifactId>jira-api</artifactId>
-			<version>${jira.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.atlassian.crowd</groupId>
-			<artifactId>embedded-crowd-api</artifactId>
-			<version>4.0.0</version>
-			<scope>provided</scope>
-		</dependency>
-
-
-		<!-- Add dependency on jira-core if you want access to JIRA implementation 
-			classes as well as the sanctioned API. -->
-		<!-- This is not normally recommended, but may be required eg when migrating 
-			a plugin originally developed against JIRA 4.x -->
-
-		<dependency>
-			<groupId>com.atlassian.jira</groupId>
-			<artifactId>jira-core</artifactId>
-			<version>${jira.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.10</version>
-			<scope>test</scope>
-		</dependency>
-		<!-- WIRED TEST RUNNER DEPENDENCIES -->
-		<dependency>
-			<groupId>com.atlassian.plugins</groupId>
-			<artifactId>atlassian-plugins-osgi-testrunner</artifactId>
-			<version>${plugin.testrunner.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.atlassian.plugins</groupId>
-			<artifactId>atlassian-plugins-api</artifactId>
-			<version>4.4.8</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.ws.rs</groupId>
-			<artifactId>jsr311-api</artifactId>
-			<version>1.1.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- Uncomment to use TestKit in your project. Details at https://bitbucket.org/atlassian/jira-testkit -->
-		<!-- You can read more about TestKit at https://developer.atlassian.com/display/JIRADEV/Plugin+Tutorial+-+Smarter+integration+testing+with+TestKit -->
-		<!-- <dependency> <groupId>com.atlassian.jira.tests</groupId> <artifactId>jira-testkit-client</artifactId> 
-			<version>${testkit.version}</version> <scope>test</scope> </dependency> -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.6.6</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<version>1.8.5</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.atlassian.upm</groupId>
-			<artifactId>licensing-api</artifactId>
-			<version>2.21.4</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.atlassian.upm</groupId>
-			<artifactId>upm-api</artifactId>
-			<version>2.21</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.atlassian.sal</groupId>
-			<artifactId>sal-api</artifactId>
-			<version>3.0.7</version>
-			<scope>provided</scope>
-		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.springframework</groupId>-->
-<!--			<artifactId>spring-web</artifactId>-->
-<!--			<version>2.0.6</version>-->
-<!--			<scope>provided</scope>-->
-<!--		</dependency>-->
-		<dependency>
-			<groupId>com.atlassian.gzipfilter</groupId>
-			<artifactId>atlassian-gzipfilter-legacy</artifactId>
-			<version>1.23.0</version>
-			<scope>provided</scope>
-		</dependency>
+    <dependencies>
         <dependency>
-            <groupId>com.atlassian.fugue</groupId>
-            <artifactId>fugue</artifactId>
-            <version>2.6.1</version>
-			<scope>provided</scope>
+            <groupId>com.atlassian.jira</groupId>
+            <artifactId>jira-api</artifactId>
+            <version>${jira.version}</version>
+            <scope>provided</scope>
         </dependency>
-		<dependency>
-			<groupId>com.atlassian.crowd</groupId>
-			<artifactId>crowd-api</artifactId>
-			<version>3.3.3</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.atlassian.crowd</groupId>
-			<artifactId>crowd-integration-api</artifactId>
-			<version>2.8.3</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.atlassian.crowd</groupId>
-			<artifactId>embedded-crowd-core</artifactId>
-			<version>2.8.3</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.atlassian.application</groupId>
-			<artifactId>atlassian-application-api</artifactId>
-			<version>1.2</version>
-			<scope>provided</scope>
-		</dependency>
         <dependency>
-            <groupId>com.atlassian.event</groupId>
-            <artifactId>atlassian-event</artifactId>
-            <version>3.1.5</version>
-			<scope>provided</scope>
+            <groupId>com.atlassian.jira</groupId>
+            <artifactId>jira-core</artifactId>
+            <version>${jira.version}</version>
+            <scope>provided</scope>
         </dependency>
-		<dependency>
-			<groupId>opensymphony</groupId>
-			<artifactId>propertyset</artifactId>
-			<version>1.5</version>
-			<scope>provided</scope>
-		</dependency>
 
-		<dependency>
-			<groupId>com.atlassian.activeobjects</groupId>
-			<artifactId>activeobjects-plugin</artifactId>
-			<version>3.6.3</version>
-			<scope>provided</scope>
-		</dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.google.guava</groupId>-->
-<!--            <artifactId>guava</artifactId>-->
-<!--            <version>11.0.2-atlassian-01</version>-->
-<!--			<scope>provided</scope>-->
-<!--        </dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>com.h2database</groupId>-->
-<!--			<artifactId>h2</artifactId>-->
-<!--			<version>2.1.214</version>-->
-<!--			<scope>provided</scope>-->
-<!--		</dependency>-->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>5.3.20</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.miniorange.license</groupId>
-			<artifactId>license-handler</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.auth0</groupId>
-			<artifactId>java-jwt</artifactId>
-			<version>3.19.1</version>
-			<scope>compile</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>com.fasterxml.jackson.core</groupId>
-					<artifactId>jackson-databind</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.atlassian.maven.plugins</groupId>
-				<artifactId>maven-jira-plugin</artifactId>
-				<version>${amps.version}</version>
-				<extensions>true</extensions>
-				<configuration>
-					<productVersion>${jira.version}</productVersion>
-					<productDataVersion>${jira.version}</productDataVersion>
-					<enableQuickReload>true</enableQuickReload>
-					<enableFastdev>false</enableFastdev>
-					<!-- Uncomment to install TestKit backdoor in JIRA. -->
-					<!-- <pluginArtifacts> <pluginArtifact> <groupId>com.atlassian.jira.tests</groupId> 
-						<artifactId>jira-testkit-plugin</artifactId> <version>${testkit.version}</version> 
-						</pluginArtifact> </pluginArtifacts> -->
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-	<properties>
-		<jira.version>9.0.0</jira.version>
-		<amps.version>6.2.6</amps.version>
-		<plugin.testrunner.version>1.2.3</plugin.testrunner.version>
-		<!-- TestKit version 6.x for JIRA 6.x -->
-		<testkit.version>6.3.11</testkit.version>
-	</properties>
-	<name>JIRA SSO / Single Sign On, JIRA SAML SSO</name>
-	<description>Single Sign On (SSO) into Jira using any SAML compliant applications like ADFS, Azure AD, Okta, OneLogin, G Suite / Google Apps, Keycloak, Ping Federate, Oracle, AuthAnvil, Salesforce, Auth0, Shibboleth, Centrify, OpenAM, Bitium, RSA and many more. Jira SAML SSO app is easy to use and setup. Don't have an IDP? You can use miniOrange Identity Provider for SAML Single Sign On (SSO) to login into Jira.</description>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.atlassian.plugins</groupId>
+            <artifactId>atlassian-plugins-osgi-javaconfig</artifactId>
+            <version>${osgi.javaconfig.version}</version>
+        </dependency>
+        <!-- OSGi Java Config dependencies -->
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.framework</artifactId>
+            <version>4.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- WIRED TEST RUNNER DEPENDENCIES -->
+        <dependency>
+            <groupId>com.atlassian.plugins</groupId>
+            <artifactId>atlassian-plugins-osgi-testrunner</artifactId>
+            <version>${plugin.testrunner.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>jsr311-api</artifactId>
+            <version>1.1.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.2-atlassian-1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- User added dependency -->
+
+        <dependency>
+            <groupId>com.atlassian.templaterenderer</groupId>
+            <artifactId>atlassian-template-renderer-api</artifactId>
+            <version>4.2.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.atlassian.activeobjects</groupId>
+            <artifactId>activeobjects-plugin</artifactId>
+            <version>5.3.0-ae51b13b5</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.collections</groupId>
+            <artifactId>google-collections</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.atlassian.upm</groupId>
+            <artifactId>licensing-api</artifactId>
+            <version>1001.3.27</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.atlassian.upm</groupId>
+            <artifactId>upm-api</artifactId>
+            <version>1001.3.27</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- SAML dependencies -->
+        <dependency>
+            <groupId>com.onelogin</groupId>
+            <artifactId>java-saml</artifactId>
+            <version>2.9.0</version>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-lang3</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.28</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.atlassian.crowd</groupId>
+            <artifactId>crowd-api</artifactId>
+            <version>4.3.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.crowd</groupId>
+            <artifactId>crowd-integration-api</artifactId>
+            <version>4.3.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.seraph</groupId>
+            <artifactId>atlassian-seraph</artifactId>
+            <version>4.1.3</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>jira-maven-plugin</artifactId>
+                <version>${amps.version}</version>
+                <extensions>true</extensions>
+                <!--<goals><goal>copy-bundled-dependencies</goal></goals>-->
+                <configuration>
+                    <productVersion>${jira.version}</productVersion>
+                    <productDataVersion>${jira.version}</productDataVersion>
+
+                    <enableQuickReload>true</enableQuickReload>
+
+                    <!-- See here for an explanation of default instructions: -->
+                    <!-- https://developer.atlassian.com/docs/advanced-topics/configuration-of-instructions-in-atlassian-plugins -->
+                    <instructions>
+                        <Atlassian-Plugin-Key>${atlassian.plugin.key}</Atlassian-Plugin-Key>
+
+                        <!-- Add package to export here -->
+                        <Export-Package>
+                            com.miniorange.sso.saml,
+                        </Export-Package>
+
+                        <!-- Add package import here -->
+                        <Import-Package>
+                            org.springframework.osgi.*;resolution:="optional",
+                            org.eclipse.gemini.blueprint.*;resolution:="optional",
+                            *;version="0";resolution:=optional,
+                            *
+                        </Import-Package>
+
+                        <!-- Ensure plugin is spring powered -->
+                        <Spring-Context>*</Spring-Context>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+
+    <properties>
+        <jira.version>9.0.0</jira.version>
+        <amps.version>8.1.2</amps.version>
+        <plugin.testrunner.version>2.0.2</plugin.testrunner.version>
+        <osgi.javaconfig.version>0.2.0</osgi.javaconfig.version>
+        <spring.version>4.2.5.RELEASE</spring.version>
+        <!-- This property ensures consistency between the key in atlassian-plugin.xml and the OSGi bundle's key. -->
+        <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
+        <!-- TestKit version 6.x for JIRA 6.x -->
+        <testkit.version>6.3.11</testkit.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
 </project>
