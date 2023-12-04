@@ -101,10 +101,10 @@
 <!--					<groupId>org.bouncycastle</groupId>-->
 <!--					<artifactId>bcprov-jdk15on</artifactId>-->
 <!--				</exclusion>-->
-<!--&lt;!&ndash;				<exclusion>&ndash;&gt;-->
-<!--&lt;!&ndash;					<groupId>ca.juliusdavies</groupId>&ndash;&gt;-->
-<!--&lt;!&ndash;					<artifactId>not-yet-commons-ssl</artifactId>&ndash;&gt;-->
-<!--&lt;!&ndash;				</exclusion>&ndash;&gt;-->
+<!--				<exclusion>-->
+<!--					<groupId>ca.juliusdavies</groupId>-->
+<!--					<artifactId>not-yet-commons-ssl</artifactId>-->
+<!--				</exclusion>-->
 <!--				<exclusion>-->
 <!--					<groupId>org.apache.santuario</groupId>-->
 <!--					<artifactId>xmlsec</artifactId>-->
