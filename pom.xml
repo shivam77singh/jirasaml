@@ -92,25 +92,25 @@
 			<version>1.15.3</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.opensaml</groupId>
-			<artifactId>xmltooling</artifactId>
-			<version>1.4.4</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.bouncycastle</groupId>
-					<artifactId>bcprov-jdk15on</artifactId>
-				</exclusion>
+<!--		<dependency>-->
+<!--			<groupId>org.opensaml</groupId>-->
+<!--			<artifactId>xmltooling</artifactId>-->
+<!--			<version>1.4.4</version>-->
+<!--			<exclusions>-->
 <!--				<exclusion>-->
-<!--					<groupId>ca.juliusdavies</groupId>-->
-<!--					<artifactId>not-yet-commons-ssl</artifactId>-->
+<!--					<groupId>org.bouncycastle</groupId>-->
+<!--					<artifactId>bcprov-jdk15on</artifactId>-->
 <!--				</exclusion>-->
-				<exclusion>
-					<groupId>org.apache.santuario</groupId>
-					<artifactId>xmlsec</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+<!--&lt;!&ndash;				<exclusion>&ndash;&gt;-->
+<!--&lt;!&ndash;					<groupId>ca.juliusdavies</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;					<artifactId>not-yet-commons-ssl</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;				</exclusion>&ndash;&gt;-->
+<!--				<exclusion>-->
+<!--					<groupId>org.apache.santuario</groupId>-->
+<!--					<artifactId>xmlsec</artifactId>-->
+<!--				</exclusion>-->
+<!--			</exclusions>-->
+<!--		</dependency>-->
 
 		<dependency>
 			<groupId>xml-resolver</groupId>
