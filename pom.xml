@@ -64,7 +64,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-
 		<dependency>
 			<groupId>com.atlassian.templaterenderer</groupId>
 			<artifactId>atlassian-template-renderer-velocity16-plugin</artifactId>
