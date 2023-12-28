@@ -39,6 +39,14 @@
 					<groupId>xml-resolver</groupId>
 					<artifactId>xml-resolver</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>org.owasp.esapi</groupId>
+					<artifactId>esapi</artifactId>
+				</exclusion>
+                <exclusion>
+                    <groupId>org.apache.velocity</groupId>
+                    <artifactId>velocity</artifactId>
+                </exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -324,11 +332,11 @@
 			<version>4.4.0</version>
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.bouncycastle</groupId>
-			<artifactId>bcmail-jdk18on</artifactId>
-			<version>1.77</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.bouncycastle</groupId>-->
+<!--			<artifactId>bcmail-jdk18on</artifactId>-->
+<!--			<version>1.77</version>-->
+<!--		</dependency>-->
 
 	</dependencies>
 	<build>
