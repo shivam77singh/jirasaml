@@ -238,7 +238,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>5.3.10</version>
+			<version>5.3.18</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -288,6 +288,11 @@
 			<artifactId>propertyset</artifactId>
 			<version>1.5</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.2</version>
 		</dependency>
 
 		<dependency>
