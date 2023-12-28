@@ -39,10 +39,10 @@
 					<groupId>xml-resolver</groupId>
 					<artifactId>xml-resolver</artifactId>
 				</exclusion>
-				<exclusion>
-					<groupId>org.owasp.esapi</groupId>
-					<artifactId>esapi</artifactId>
-				</exclusion>
+<!--				<exclusion>-->
+<!--					<groupId>org.owasp.esapi</groupId>-->
+<!--					<artifactId>esapi</artifactId>-->
+<!--				</exclusion>-->
 				<exclusion>
 					<groupId>org.apache.velocity</groupId>
 					<artifactId>velocity</artifactId>
