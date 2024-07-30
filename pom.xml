@@ -1,27 +1,173 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.miniorange.sso.saml</groupId>
-	<artifactId>jira-sso</artifactId>
-	<version>2.1.2</version>
+	<artifactId>confluence-sso</artifactId>
+	<version>3.2.8</version>
+
 	<organization>
 		<name>miniOrange</name>
-		<url>http://miniorange.com/</url>
+		<url>https://www.miniorange.com/</url>
 	</organization>
+
+	<name>Single Sign On (SSO) for Confluence SAML</name>
+
 	<packaging>atlassian-plugin</packaging>
+
 	<dependencies>
-		<!-- <dependency> <groupId>org.apache.wss4j</groupId> <artifactId>wss4j-ws-security-common</artifactId>
-			<version>2.1.5</version> <exclusions> <exclusion> <groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId> </exclusion> <exclusion> <groupId>org.bouncycastle</groupId>
-			<artifactId>bcpkix-jdk15on</artifactId> </exclusion> <exclusion> <groupId>org.bouncycastle</groupId>
-			<artifactId>bcprov-jdk15on</artifactId> </exclusion> </exclusions> </dependency> -->
-		<!--<dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-api</artifactId>
-			<version>1.7.14</version> <scope>provided</scope> </dependency> -->
+		<!-- <dependency> <groupId>junit</groupId> <artifactId>junit</artifactId>
+			<version>4.10</version> <scope>test</scope> </dependency> -->
+		<dependency>
+			<groupId>com.atlassian.confluence</groupId>
+			<artifactId>confluence</artifactId>
+			<version>${confluence.version}</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>xalan</groupId>
+					<artifactId>xalan</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jcl-over-slf4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jul-to-slf4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.velocity</groupId>
+					<artifactId>velocity</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>jackson-databind</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.slf4j/jul-to-slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+			<version>2.0.9</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>2.0.9</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- WIRED TEST RUNNER DEPENDENCIES -->
+		<!-- <dependency> <groupId>com.atlassian.plugins</groupId> <artifactId>atlassian-plugins-osgi-testrunner</artifactId>
+			<version>${plugin.testrunner.version}</version> <scope>test</scope> </dependency> -->
+
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>jsr311-api</artifactId>
+			<version>1.1.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.10.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.atlassian.seraph</groupId>
+			<artifactId>atlassian-seraph</artifactId>
+			<version>4.2.1-6826444</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.14.0</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-io</groupId>
+					<artifactId>commons-io</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-fileupload</groupId>
+					<artifactId>commons-fileupload</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.15.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.5</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents.client5</groupId>
+			<artifactId>httpclient5</artifactId>
+			<version>5.3</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-codec</groupId>
+					<artifactId>commons-codec</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents.core5</groupId>
+			<artifactId>httpcore5</artifactId>
+			<version>5.2.4</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.16.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>2.0.9</version>
+			<scope>provided</scope>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.opensaml</groupId>
 			<artifactId>opensaml</artifactId>
-			<version>2.6.4</version>
+			<version>2.6.6</version>
 			<exclusions>
 				<exclusion>
 					<groupId>xalan</groupId>
@@ -39,28 +185,73 @@
 					<groupId>xml-resolver</groupId>
 					<artifactId>xml-resolver</artifactId>
 				</exclusion>
-<!--				<exclusion>-->
-<!--					<groupId>org.owasp.esapi</groupId>-->
-<!--					<artifactId>esapi</artifactId>-->
-<!--				</exclusion>-->
+				<exclusion>
+					<groupId>commons-collections</groupId>
+					<artifactId>commons-collections</artifactId>
+				</exclusion>
 				<exclusion>
 					<groupId>org.apache.velocity</groupId>
 					<artifactId>velocity</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Adding updated version for excluded dependency from opensaml -->
+
+		<!-- https://mvnrepository.com/artifact/commons-collections/commons-collections -->
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>4.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.opensaml</groupId>
+			<artifactId>xmltooling</artifactId>
+			<version>1.4.4</version>
+			<exclusions>
+				<exclusion>
+					<groupId>xalan</groupId>
+					<artifactId>serializer</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.bouncycastle</groupId>
+					<artifactId>bcprov-jdk15on</artifactId>
 				</exclusion>
 				<exclusion>
 					<groupId>org.apache.santuario</groupId>
 					<artifactId>xmlsec</artifactId>
 				</exclusion>
 				<exclusion>
-					<groupId>commons-httpclient</groupId>
-					<artifactId>commons-httpclient</artifactId>
+					<groupId>commons-codec</groupId>
+					<artifactId>commons-codec</artifactId>
 				</exclusion>
 				<exclusion>
-					<groupId>org.bouncycastle</groupId>
-					<artifactId>bcprov-jdk15on</artifactId>
+					<groupId>ca.juliusdavies</groupId>
+					<artifactId>not-yet-commons-ssl</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.owasp.esapi</groupId>
+					<artifactId>esapi</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- Re-adding dependency removed from xmltooling -->
+		<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk18on</artifactId>
+			<version>1.77</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/ca.juliusdavies/not-yet-commons-ssl -->
+		<dependency>
+			<groupId>ca.juliusdavies</groupId>
+			<artifactId>not-yet-commons-ssl</artifactId>
+			<version>0.3.11</version>
+		</dependency>
+
 		<dependency>
 			<groupId>xerces</groupId>
 			<artifactId>xercesImpl</artifactId>
@@ -68,184 +259,15 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.santuario</groupId>
-			<artifactId>xmlsec</artifactId>
-			<version>2.2.6</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.atlassian.templaterenderer</groupId>
-			<artifactId>atlassian-template-renderer-velocity16-plugin</artifactId>
-			<version>5.0.4</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.atlassian.templaterenderer</groupId>
-			<artifactId>atlassian-template-renderer-api</artifactId>
-			<version>5.0.3</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.apache.velocity/velocity -->
-		<!--		<dependency>-->
-		<!--			<groupId>org.apache.velocity</groupId>-->
-		<!--			<artifactId>velocity</artifactId>-->
-		<!--			<version>1.6.4-atlassian-24</version>-->
-		<!--			<scope>provided</scope>-->
-		<!--		</dependency>-->
-
-		<dependency>
-			<groupId>org.jsoup</groupId>
-			<artifactId>jsoup</artifactId>
-			<version>1.17.1</version>
-		</dependency>
-
-		<!--		<dependency>-->
-		<!--			<groupId>org.opensaml</groupId>-->
-		<!--			<artifactId>xmltooling</artifactId>-->
-		<!--			<version>1.4.4</version>-->
-		<!--		</dependency>-->
-
-		<dependency>
 			<groupId>xml-resolver</groupId>
 			<artifactId>xml-resolver</artifactId>
 			<version>1.2</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>org.apache.cxf</groupId> <artifactId>cxf-common-utilities</artifactId>
-			<version>2.5.11</version> </dependency> <dependency> <groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-rs-security-sso-saml</artifactId> <version>3.1.6</version>
-			<exclusions> <exclusion> <groupId>org.apache.geronimo.specs</groupId> <artifactId>geronimo-servlet_3.0_spec</artifactId>
-			</exclusion> </exclusions> </dependency> -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>4.0.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.atlassian.seraph</groupId>
-			<artifactId>atlassian-seraph</artifactId>
-			<version>4.2.1-6826444</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.14.0</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.httpcomponents.client5</groupId>
-			<artifactId>httpclient5</artifactId>
-			<version>5.3</version>
-			<scope>provided</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>commons-codec</groupId>
-					<artifactId>commons-codec</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-
-		<!--<dependency> <groupId>com.fasterxml.jackson.core</groupId> <artifactId>jackson-core</artifactId>
-			<version>2.7.4</version> </dependency> <dependency> <groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId> <version>2.7.4</version> </dependency>
-			<dependency> <groupId>com.fasterxml.jackson.core</groupId> <artifactId>jackson-databind</artifactId>
-			<version>2.7.4</version> </dependency> -->
-		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
-			<version>1.16.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.15.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>opensymphony</groupId>
-			<artifactId>webwork</artifactId>
-			<version>1.4-atlassian-31</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.atlassian.jira</groupId>
-			<artifactId>jira-api</artifactId>
-			<version>${jira.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.atlassian.crowd</groupId>
-			<artifactId>embedded-crowd-api</artifactId>
-			<version>5.2.0-QR20230915100956</version>
-			<scope>provided</scope>
-		</dependency>
-
-
-		<!-- Add dependency on jira-core if you want access to JIRA implementation
-			classes as well as the sanctioned API. -->
-		<!-- This is not normally recommended, but may be required eg when migrating
-			a plugin originally developed against JIRA 4.x -->
-
-		<dependency>
-			<groupId>com.atlassian.jira</groupId>
-			<artifactId>jira-core</artifactId>
-			<version>${jira.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13.2</version>
-			<scope>test</scope>
-		</dependency>
-		<!-- WIRED TEST RUNNER DEPENDENCIES -->
-		<dependency>
-			<groupId>com.atlassian.plugins</groupId>
-			<artifactId>atlassian-plugins-osgi-testrunner</artifactId>
-			<version>${plugin.testrunner.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.atlassian.plugins</groupId>
-			<artifactId>atlassian-plugins-api</artifactId>
-			<version>7.2.2</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.ws.rs</groupId>
-			<artifactId>jsr311-api</artifactId>
-			<version>1.1.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- Uncomment to use TestKit in your project. Details at https://bitbucket.org/atlassian/jira-testkit -->
-		<!-- You can read more about TestKit at https://developer.atlassian.com/display/JIRADEV/Plugin+Tutorial+-+Smarter+integration+testing+with+TestKit -->
-		<!-- <dependency> <groupId>com.atlassian.jira.tests</groupId> <artifactId>jira-testkit-client</artifactId>
-			<version>${testkit.version}</version> <scope>test</scope> </dependency> -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>2.0.9</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<version>1.10.19</version>
-			<scope>test</scope>
-		</dependency>
 		<dependency>
 			<groupId>com.atlassian.upm</groupId>
 			<artifactId>licensing-api</artifactId>
-			<version>2.22.6</version>
+			<version>1001.3.27</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -255,27 +277,81 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.atlassian.plugins</groupId>
+			<artifactId>atlassian-plugins-api</artifactId>
+			<version>7.2.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>com.atlassian.sal</groupId>
 			<artifactId>sal-api</artifactId>
 			<version>5.2.0-m02</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>5.3.20</version>
+			<groupId>com.atlassian.activeobjects</groupId>
+			<artifactId>activeobjects-plugin</artifactId>
+			<version>5.3.0-m04</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-core</artifactId>
+			<version>6.3.0.2-atlassian-5</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.freemarker</groupId>
+					<artifactId>freemarker</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.github.ben-manes.caffeine</groupId>
+					<artifactId>caffeine</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-fileupload</groupId>
+					<artifactId>commons-fileupload</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.commons</groupId>
+					<artifactId>commons-lang3</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-velocity-plugin</artifactId>
+			<version>6.3.0.2-atlassian-5</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.atlassian.gzipfilter</groupId>
-			<artifactId>atlassian-gzipfilter-legacy</artifactId>
-			<version>1.23.0</version>
+			<groupId>com.miniorange.license</groupId>
+			<artifactId>license-handler</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>4.4.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>webwork</artifactId>
+			<version>1.4-atlassian-31</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.atlassian.fugue</groupId>
-			<artifactId>fugue</artifactId>
-			<version>2.6.2</version>
+			<groupId>com.atlassian.confluence</groupId>
+			<artifactId>confluence-java-api</artifactId>
+			<version>8.7.0-conf79026-m04</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.atlassian.crowd</groupId>
+			<artifactId>embedded-crowd-api</artifactId>
+			<version>5.2.0-QR20230915100956</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -297,85 +373,46 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.atlassian.application</groupId>
-			<artifactId>atlassian-application-api</artifactId>
-			<version>3.0.0</version>
+			<groupId>com.atlassian.plugins.rest</groupId>
+			<artifactId>atlassian-rest-common</artifactId>
+			<version>8.0.3</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.atlassian.event</groupId>
-			<artifactId>atlassian-event</artifactId>
-			<version>5.0.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>opensymphony</groupId>
-			<artifactId>propertyset</artifactId>
-			<version>1.5</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-collections</groupId>
-			<artifactId>commons-collections</artifactId>
-			<version>3.2.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.atlassian.activeobjects</groupId>
-			<artifactId>activeobjects-plugin</artifactId>
-			<version>5.3.0-m04</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>32.1.3-jre</version>
-			<scope>provided</scope>
-		</dependency>
-		<!--		<dependency>-->
-		<!--			<groupId>com.h2database</groupId>-->
-		<!--			<artifactId>h2</artifactId>-->
-		<!--			<version>2.2.224</version>-->
-		<!--			<scope>provided</scope>-->
-		<!--		</dependency>-->
-		<dependency>
-			<groupId>com.miniorange.license</groupId>
-			<artifactId>license-handler</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.auth0</groupId>
-			<artifactId>java-jwt</artifactId>
-			<version>4.4.0</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.bouncycastle</groupId>
-			<artifactId>bcmail-jdk18on</artifactId>
-			<version>1.77</version>
-		</dependency>
-
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>atlassian-public</id>
+			<url>https://maven.atlassian.com/repository/public</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+		</repository>
+	</repositories>
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>com.atlassian.maven.plugins</groupId>
-				<artifactId>jira-maven-plugin</artifactId>
+				<artifactId>confluence-maven-plugin</artifactId>
 				<version>${amps.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-					<productVersion>${jira.version}</productVersion>
-					<productDataVersion>${jira.version}</productDataVersion>
+					<productVersion>${confluence.version}</productVersion>
+					<productDataVersion>${confluence.data.version}</productDataVersion>
 					<enableQuickReload>true</enableQuickReload>
 					<!--<enableFastdev>false</enableFastdev>-->
-					<!-- Uncomment to install TestKit backdoor in JIRA. -->
-					<!-- <pluginArtifacts> <pluginArtifact> <groupId>com.atlassian.jira.tests</groupId>
-						<artifactId>jira-testkit-plugin</artifactId> <version>${testkit.version}</version>
-						</pluginArtifact> </pluginArtifacts> -->
 				</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
@@ -384,12 +421,12 @@
 		</plugins>
 	</build>
 	<properties>
-		<jira.version>9.0.0</jira.version>
+		<confluence.version>7.13.0</confluence.version>
+		<confluence.data.version>7.13.0</confluence.data.version>
 		<amps.version>8.1.2</amps.version>
-		<plugin.testrunner.version>1.2.3</plugin.testrunner.version>
-		<!-- TestKit version 6.x for JIRA 6.x -->
-		<testkit.version>6.3.11</testkit.version>
+
+		<atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
 	</properties>
-	<name>JIRA SSO / Single Sign On, JIRA SAML SSO</name>
-	<description>Single Sign On (SSO) into Jira using any SAML compliant applications like ADFS, Azure AD, Okta, OneLogin, G Suite / Google Apps, Keycloak, Ping Federate, Oracle, AuthAnvil, Salesforce, Auth0, Shibboleth, Centrify, OpenAM, Bitium, RSA and many more. Jira SAML SSO app is easy to use and setup. Don't have an IDP? You can use miniOrange Identity Provider for SAML Single Sign On (SSO) to login into Jira.</description>
+
+	<description>Single Sign On (SSO) for Confluence using ADFS, Azure AD, Okta, Google Apps/GSuite, OneLogin, Shibboleth, Centrify, Keycloak, Ping, OpenAM, Bitium, RSA and more. Fully supported, most affordable with a range of SSO features.</description>
 </project>
